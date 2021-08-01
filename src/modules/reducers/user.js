@@ -17,6 +17,7 @@ const initialState = {
   signUpResponse: null,
   requestingLogin: false,
   loginResponse: null,
+  loginFailureResponse: null,
 };
 
 const userReducer = (prevState = initialState, action) => {
@@ -63,7 +64,7 @@ const userReducer = (prevState = initialState, action) => {
       return {
         ...prevState,
         requestingLogin: false,
-        loginResponse: action.payload,
+        loginFailureResponse: action.payload,
       };
     case LOGOUT_ACTION:
       return {

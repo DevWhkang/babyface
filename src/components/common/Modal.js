@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import logoImg from '../../assets/images/logo+babyface.png';
-import { changeModalState, logoutAction } from '../../modules/actions/user';
+import {
+  changeModalState,
+  loginFailure,
+  logoutAction,
+} from '../../modules/actions/user';
 import { Button } from './GlobalStyles';
 
 const Background = styled.div`
@@ -95,13 +99,13 @@ const Modal = ({ mode, errors, history }) => {
       })
       .sort((a, b) => a[0] - b[0])
       .slice(0, 1);
-    return sortedError.length ? sortedError[0][1] : '';
+    return sortedError.length ? sortedError[0][1] : 0;
   }, [errors]);
 
   const handleClickModalClose = useCallback(() => {
     dispatch(changeModalState(false));
-
     if (mode === modalMode.NOT_LOGIN_ALERT) history.push('/login');
+    if (mode === modalMode.LOGIN_VALIDATE) dispatch(loginFailure(null));
     if (mode === modalMode.LOGOUT) history.goBack();
     if (mode.includes('success')) history.push('/');
   }, [dispatch, mode, history]);
