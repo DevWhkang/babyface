@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './modules/reducers';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const thunkMiddleware = (store) => (dispatch) => (action) => {
   if (typeof action === 'function') {
@@ -23,7 +24,9 @@ export const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );
