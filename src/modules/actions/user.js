@@ -95,9 +95,10 @@ const loginSuccess = (payload) => {
   };
 };
 
-const loginFailure = () => {
+export const loginFailure = (payload) => {
   return {
     type: LOGIN_FAILURE,
+    payload,
   };
 };
 
