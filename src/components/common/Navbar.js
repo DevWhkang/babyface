@@ -159,6 +159,7 @@ const Navbar = () => {
     dispatch(changeVisitedState(linkIndex));
     // logout request
     if (loginResponse && linkIndex === 2) dispatch(changeModalState(true));
+    if (!loginResponse && linkIndex === 0) dispatch(changeModalState(true));
   };
 
   const showButton = () => {
