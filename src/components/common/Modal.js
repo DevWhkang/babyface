@@ -103,6 +103,7 @@ const modalMode = {
   SIGN_UP_SUCCESS: 'sign-up-success' || 'SIGN_UP_SUCCESS',
   LOGIN_SUCCESS: 'login-success' || 'LOGIN_SUCCESS',
   LOGOUT: 'logout' || 'LOGOUT',
+  SIGN_UP_WHILE_LOGIN: 'sign-up-while-login' || 'SIGN_UP_WHILE_LOGIN',
   // other mode
 };
 
@@ -129,7 +130,8 @@ const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
     if (handleChangeErrorText) handleChangeErrorText(errorText);
     if (mode === modalMode.NOT_LOGIN_ALERT) history.push('/login');
     if (mode === modalMode.LOGIN_VALIDATE) dispatch(loginFailure(null));
-    if (mode === modalMode.LOGOUT) history.goBack();
+    if (mode === modalMode.LOGOUT || mode === modalMode.SIGN_UP_WHILE_LOGIN)
+      history.goBack();
     if (mode.includes('success')) history.push('/');
   }, [dispatch, mode, history, errorText, handleChangeErrorText]);
 
@@ -194,6 +196,17 @@ const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
           return (
             <>
               <h1>정말 로그아웃 하시겠습니까?</h1>
+              <Button big fontBig onClick={handleClickLogout}>
+                로그아웃
+              </Button>
+            </>
+          );
+        case modalMode.SIGN_UP_WHILE_LOGIN:
+          return (
+            <>
+              <h1>로그인 중입니다.</h1>
+              <h2>로그아웃 하시겠습니까?</h2>
+              <br />
               <Button big fontBig onClick={handleClickLogout}>
                 로그아웃
               </Button>

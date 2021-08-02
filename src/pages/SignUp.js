@@ -96,7 +96,7 @@ const SignUp = ({ history }) => {
     'sign-up',
   );
   const signUpResponse = useSelector((state) => state.user.signUpResponse);
-  const showModal = useSelector((state) => state.user.showModal);
+  const loginResponse = useSelector((state) => state.user.loginResponse);
 
   const [errorText, setErrorText] = useState();
   const inputRef = useRef(null);
@@ -109,15 +109,20 @@ const SignUp = ({ history }) => {
 
   return (
     <Background>
-      {signUpResponse && showModal ? (
+      {signUpResponse ? (
         <Modal mode="sign-up-success" errors={errors} history={history} />
       ) : (
-        <Modal
-          mode="sign-up-validate"
-          errors={errors}
-          history={history}
-          handleChangeErrorText={setErrorText}
-        />
+        <>
+          <Modal
+            mode="sign-up-validate"
+            errors={errors}
+            history={history}
+            handleChangeErrorText={setErrorText}
+          />
+          {loginResponse && (
+            <Modal mode="sign-up-while-login" errors={{}} history={history} />
+          )}
+        </>
       )}
       <SignUpWrapper>
         <h1>회원가입</h1>
