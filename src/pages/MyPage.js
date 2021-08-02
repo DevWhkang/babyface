@@ -5,6 +5,7 @@ import OrderList from '../components/OrderList';
 import styled from 'styled-components';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 import Modal from '../components/common/Modal';
+import MyPageDetail from './MyPageDetail';
 
 const MypageWrapper = styled.section`
   display: flex;
@@ -92,7 +93,8 @@ const NextButton = styled(MdNavigateNext)`
   }
 `;
 
-const MyPage = ({ history }) => {
+const MyPage = ({ history, match }) => {
+  const { params } = match;
   const dispatch = useDispatch();
   const { content, currentPage, totalPages } = useSelector(
     (state) => state.order.getOrderListResponse,
@@ -125,12 +127,16 @@ const MyPage = ({ history }) => {
   }, [currentPage, totalPages]);
 
   useEffect(() => {
-    dispatch(getOrderListAction(0));
-    console.log(showModal);
+    if (!showModal) dispatch(getOrderListAction(0));
   }, [dispatch, showModal]);
 
   return showModal ? (
-    <Modal mode="not-login-alert" errors={{}} history={history} />
+    <>
+      {!params.id && (
+        <Modal mode="not-login-alert" errors={{}} history={history} />
+      )}
+      {params.id && <MyPageDetail id={params.id} />}
+    </>
   ) : (
     <MypageWrapper>
       <Title>

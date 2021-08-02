@@ -110,12 +110,7 @@ const SignUp = ({ history }) => {
   return (
     <Background>
       {signUpResponse && showModal ? (
-        <Modal
-          mode="sign-up-success"
-          errors={errors}
-          history={history}
-          handleChangeErrorText={setErrorText}
-        />
+        <Modal mode="sign-up-success" errors={errors} history={history} />
       ) : (
         <Modal
           mode="sign-up-validate"

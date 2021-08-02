@@ -23,7 +23,9 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/logout" component={Logout} />
         <Route path="/sign-up" component={SignUp} />
-        <Route path="/mypage/order" component={MyPage} />
+        <Route exact path="/mypage/order" component={MyPage} />
+        <Route path="/mypage/order/:id" component={MyPage} />
+
         <Redirect path="*" to="/" />
       </Switch>
     </Router>

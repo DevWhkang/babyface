@@ -95,7 +95,6 @@ const Login = ({ history }) => {
 
   useEffect(() => {
     if (inputRef.current) {
-      console.log(inputRef.current);
       inputRef.current.focus();
     }
   }, [errorText]);
@@ -110,12 +109,7 @@ const Login = ({ history }) => {
           handleChangeErrorText={setErrorText}
         />
       ) : (
-        <Modal
-          mode="login-success"
-          errors={errors}
-          history={history}
-          handleChangeErrorText={setErrorText}
-        />
+        <Modal mode="login-success" errors={errors} history={history} />
       )}
       <LoginWrapper>
         <h1>로그인</h1>
