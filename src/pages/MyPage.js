@@ -14,6 +14,11 @@ const MypageWrapper = styled.section`
   width: 100%;
   height: 100%;
   background: #fffafa;
+
+  @media screen and (max-width: 414px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
 const Title = styled.div`
@@ -24,10 +29,15 @@ const Title = styled.div`
     border-bottom: 2px solid #c8c8c8;
     padding-bottom: 10px;
   }
+
+  @media screen and (max-width: 414px) {
+    align-self: center;
+    margin-top: 30px;
+  }
 `;
 
 const Contents = styled.div`
-  width: 50vw;
+  width: 70vw;
   height: 100%;
   padding-top: 100px;
   margin-left: 50px;
@@ -35,6 +45,12 @@ const Contents = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and (max-width: 414px) {
+    padding-top: 40px;
+    margin-left: 10px;
+    width: 95%;
+  }
 `;
 
 const Pagenation = styled.div`
@@ -56,8 +72,11 @@ const PageController = styled.div`
   justify-content: center;
   align-items: center;
   color: #8c8c8c;
-
   width: 5vw;
+
+  @media screen and (max-width: 414px) {
+    width: 70px;
+  }
 `;
 
 const PrevButton = styled(MdNavigateBefore)`
@@ -119,7 +138,7 @@ const MyPage = ({ history }) => {
       </Title>
       <Contents>
         <Pagenation>
-          <h2>Page</h2>
+          <h2>page</h2>
           <PageController>
             {isExistPrevPage && <PrevButton onClick={handleClickPrevPage} />}
             <h6>{currentPage + 1}</h6>

@@ -28,16 +28,23 @@ const SignUpWrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1vw;
 
   h1 {
     color: #696969;
     margin-bottom: 3rem;
-    font-size: 2vw;
+    font-size: 30px;
   }
 
   form {
     width: 70%;
+  }
+
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    form {
+      width: 80%;
+      height: 70%;
+    }
   }
 `;
 

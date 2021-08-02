@@ -18,6 +18,11 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 414px) {
+    align-items: flex-start;
+    padding-top: 100px;
+  }
 `;
 
 const ModalWrapper = styled.div`
@@ -28,6 +33,11 @@ const ModalWrapper = styled.div`
   background: #fffafa;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 414px) {
+    width: 80%;
+    height: 50%;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -38,12 +48,12 @@ const ModalContent = styled.div`
   height: 100%;
 
   h1 {
-    font-size: 2vw;
-    margin-top: 4rem;
+    font-size: 2rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
   }
   p {
-    font-size: 1vw;
+    font-size: 1.5rem;
     margin-bottom: 4rem;
   }
 
@@ -53,6 +63,18 @@ const ModalContent = styled.div`
   h2.submit__failure-target {
     margin-right: 10px;
     color: #8b0000;
+  }
+
+  @media screen and (max-width: 414px) {
+    h1 {
+      font-size: 20px;
+    }
+    h2 {
+      font-size: 15px;
+    }
+    p {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -101,9 +123,10 @@ const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
       .slice(0, 1);
     return sortedError.length ? sortedError[0][1] : 0;
   }, [errors]);
+
   const handleClickModalClose = useCallback(() => {
     dispatch(changeModalState(false));
-    handleChangeErrorText(errorText);
+    if (handleChangeErrorText) handleChangeErrorText(errorText);
     if (mode === modalMode.NOT_LOGIN_ALERT) history.push('/login');
     if (mode === modalMode.LOGIN_VALIDATE) dispatch(loginFailure(null));
     if (mode === modalMode.LOGOUT) history.goBack();

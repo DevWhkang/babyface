@@ -21,6 +21,9 @@ const HomeWrapper = styled.main`
 const Title = styled.h1`
   font-size: 2.5vw;
   line-height: 1.5;
+  @media screen and (max-width: 414px) {
+    font-size: 25px;
+  }
 `;
 
 const Description = styled.p`
@@ -32,6 +35,7 @@ const Description = styled.p`
 
   @media screen and (max-width: 1024px) {
     margin-top: 10px;
+    font-size: 15px;
   }
 `;
 

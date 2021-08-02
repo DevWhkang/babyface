@@ -4,14 +4,15 @@ import { mapErrorText } from '../../pages/SignUp';
 
 const InputWrapper = styled.div`
   display: flex;
+  font-size: 15px;
 
   div.input {
     width: 100%;
   }
 
   label {
-    margin-top: 8px;
-    width: 30%;
+    margin-top: 15px;
+    width: 50%;
     color: #696969;
   }
 
@@ -22,8 +23,8 @@ const InputWrapper = styled.div`
   p.validation {
     color: #db7093;
     margin-top: 10px;
-    font-size: 0.7vw;
     margin-left: 12px;
+    font-size: 10px;
   }
 `;
 
@@ -36,7 +37,7 @@ const Input = styled.input`
   border: 0;
   border-bottom: 2px solid #db7093;
   outline: 0;
-  font-size: 0.8vw;
+  font-size: 15px;
   color: #8c8c8c;
   padding: 7px 0;
   text-indent: 7px;
@@ -51,6 +52,12 @@ const Input = styled.input`
   &::placeholder {
     color: #c8c8c8;
     padding-left: 5px;
+  }
+
+  @media screen and (max-width: 414px) {
+    &::placeholder {
+      font-size: 10px;
+    }
   }
 `;
 
