@@ -1,5 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { changeModalState } from '../modules/actions/user';
 
 const OrderItemWrapper = styled.div`
   display: flex;
@@ -16,16 +19,29 @@ const OrderItemWrapper = styled.div`
   div.item-id {
     padding-bottom: 20px;
   }
-  div.item-name {
-    padding-bottom: 20px;
-  }
+`;
+
+const DetailLink = styled(Link)`
+  padding-bottom: 20px;
+  color: #db7093;
 `;
 
 const OrderItem = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const handleClickDeital = () => {
+    dispatch(changeModalState(true));
+  };
   return (
     <OrderItemWrapper>
       <div className="item-id">{item.id}</div>
-      <div className="item-name">{item.itemName}</div>
+      <DetailLink
+        onClick={handleClickDeital}
+        to={`/mypage/order/${item.id}`}
+        className="item-name"
+      >
+        {item.itemName}
+      </DetailLink>
     </OrderItemWrapper>
   );
 };
