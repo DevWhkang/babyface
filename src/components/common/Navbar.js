@@ -39,6 +39,7 @@ const NavLogo = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  color: #8b008b;
 `;
 
 const NavIcon = styled.img`
@@ -81,7 +82,7 @@ const NavLinks = styled(Link)`
   height: 100%;
   font-size: 1rem;
   font-weight: bold;
-  color: ${({ visited, index }) => (visited === index ? '#DB7093' : 'none')};
+  color: ${({ visited, index }) => (visited === index ? '#DB7093' : '#8B008B')};
 
   &:hover {
     color: #db7093;
