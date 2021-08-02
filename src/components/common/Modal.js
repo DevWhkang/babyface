@@ -50,7 +50,7 @@ const ModalContent = styled.div`
   div.submit__failure-alert {
     display: flex;
   }
-  h4.submit__failure-target {
+  h2.submit__failure-target {
     margin-right: 10px;
     color: #8b0000;
   }
@@ -104,6 +104,7 @@ const Modal = ({ mode, errors, history }) => {
 
   const handleClickModalClose = useCallback(() => {
     dispatch(changeModalState(false));
+
     if (mode === modalMode.NOT_LOGIN_ALERT) history.push('/login');
     if (mode === modalMode.LOGIN_VALIDATE) dispatch(loginFailure(null));
     if (mode === modalMode.LOGOUT) history.goBack();
@@ -138,8 +139,8 @@ const Modal = ({ mode, errors, history }) => {
             <>
               <h1>회원가입 요청에 실패했습니다.</h1>
               <div className="submit__failure-alert">
-                <h4 className="submit__failure-target">{errorText}</h4>
-                <h4>입력 양식이 올바른지 확인하세요.</h4>
+                <h2 className="submit__failure-target">{errorText}</h2>
+                <h2>입력 양식이 올바른지 확인하세요.</h2>
               </div>
             </>
           );
@@ -155,8 +156,8 @@ const Modal = ({ mode, errors, history }) => {
             <>
               <h1>로그인 요청에 실패했습니다.</h1>
               <div className="submit__failure-alert">
-                <h4 className="submit__failure-target">{errorText}</h4>
-                <h4>입력 양식이 올바른지 확인하세요.</h4>
+                <h2 className="submit__failure-target">{errorText}</h2>
+                <h2>입력 양식이 올바른지 확인하세요.</h2>
               </div>
             </>
           );

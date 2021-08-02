@@ -30,40 +30,12 @@ const SignUpWrapper = styled.section`
   justify-content: center;
   font-size: 1vw;
 
-  label {
-    margin-top: 7px;
-    width: 30%;
-    color: #696969;
-  }
   h1 {
     color: #696969;
     margin-bottom: 3rem;
     font-size: 2vw;
   }
-  p {
-    margin-bottom: 2rem;
-  }
-  p.validation {
-    color: #db7093;
-    margin-top: 10px;
-    font-size: 0.7vw;
-  }
-  input {
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid #db7093;
-    outline: 0;
-    font-size: 0.8vw;
-    color: #8c8c8c;
-    padding: 7px 0;
 
-    &::placeholder {
-      color: #c8c8c8;
-    }
-  }
-  div.input {
-    width: 100%;
-  }
   form {
     width: 70%;
   }
