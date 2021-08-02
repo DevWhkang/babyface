@@ -19,7 +19,6 @@ const MypageDetailWrapper = styled.section`
 `;
 
 const Title = styled.div`
-  height: 100%;
   margin-top: 100px;
   align-self: flex-start;
   h1 {
@@ -39,9 +38,6 @@ const Contents = styled.div`
   padding-top: 200px;
   margin-left: 50px;
   margin-bottom: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   @media screen and (max-width: 414px) {
     padding-top: 40px;

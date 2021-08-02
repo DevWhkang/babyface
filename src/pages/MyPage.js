@@ -99,8 +99,10 @@ const MyPage = ({ history, match }) => {
   const { content, currentPage, totalPages } = useSelector(
     (state) => state.order.getOrderListResponse,
   );
-  const showModal = useSelector((state) => state.user.showModal);
   const orderList = content;
+
+  const showModal = useSelector((state) => state.user.showModal);
+  const loginResponse = useSelector((state) => state.user.loginResponse);
   const [isExistPrevPage, setIsExistPrevPage] = useState(true);
   const [isExistNextPage, setIsExistNextPage] = useState(true);
 
@@ -130,12 +132,18 @@ const MyPage = ({ history, match }) => {
     if (!showModal) dispatch(getOrderListAction(0));
   }, [dispatch, showModal]);
 
+  useEffect(() => {
+    if (!loginResponse) {
+      history.push('/');
+    }
+  }, [loginResponse, history]);
+
   return showModal ? (
     <>
-      {!params.id && (
+      {!params.id && !loginResponse && (
         <Modal mode="not-login-alert" errors={{}} history={history} />
       )}
-      {params.id && <MyPageDetail id={params.id} />}
+      {params.id && loginResponse && <MyPageDetail id={params.id} />}
     </>
   ) : (
     <MypageWrapper>
