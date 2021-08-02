@@ -81,7 +81,8 @@ const Home = ({ history }) => {
 
   useEffect(() => {
     dispatch(changeVisitedState(null));
-  }, [dispatch]);
+    if (loginResponse) dispatch(changeModalState(false));
+  }, [dispatch, loginResponse]);
 
   return (
     <HomeWrapper>

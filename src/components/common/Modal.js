@@ -59,6 +59,9 @@ const ModalContent = styled.div`
 
   div.submit__failure-alert {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   h2.submit__failure-target {
     margin-right: 10px;
@@ -159,15 +162,17 @@ const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
             </>
           );
         case modalMode.SIGN_UP_VALIDATE:
-          return (
-            <>
-              <h1>회원가입 요청에 실패했습니다.</h1>
-              <div className="submit__failure-alert">
-                <h2 className="submit__failure-target">{errorText}</h2>
-                <h2>입력 양식이 올바른지 확인하세요.</h2>
-              </div>
-            </>
-          );
+          if (errorText !== 0)
+            return (
+              <>
+                <h1>회원가입 요청에 실패했습니다.</h1>
+                <div className="submit__failure-alert">
+                  <h2 className="submit__failure-target">{errorText}</h2>
+                  <h2>입력 양식이 올바른지 확인하세요.</h2>
+                </div>
+              </>
+            );
+          else return null;
         case modalMode.SIGN_UP_SUCCESS:
           return (
             <>
@@ -176,15 +181,17 @@ const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
             </>
           );
         case modalMode.LOGIN_VALIDATE:
-          return (
-            <>
-              <h1>로그인 요청에 실패했습니다.</h1>
-              <div className="submit__failure-alert">
-                <h2 className="submit__failure-target">{errorText}</h2>
-                <h2>입력 양식이 올바른지 확인하세요.</h2>
-              </div>
-            </>
-          );
+          if (errorText !== 0)
+            return (
+              <>
+                <h1>로그인 요청에 실패했습니다.</h1>
+                <div className="submit__failure-alert">
+                  <h2 className="submit__failure-target">{errorText}</h2>
+                  <h2>입력 양식이 올바른지 확인하세요.</h2>
+                </div>
+              </>
+            );
+          else return null;
         case modalMode.LOGIN_SUCCESS:
           return (
             <>
