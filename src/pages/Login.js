@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import validate from '../modules/validateInfo';
@@ -109,12 +109,32 @@ const Login = ({ history }) => {
     (state) => state.user.loginFailureResponse,
   );
 
+  const [errorText, setErrorText] = useState();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      console.log(inputRef.current);
+      inputRef.current.focus();
+    }
+  }, [errorText]);
+
   return (
     <Background>
       {!loginResponse || loginFailureResponse ? (
-        <Modal mode="login-validate" errors={errors} history={history} />
+        <Modal
+          mode="login-validate"
+          errors={errors}
+          history={history}
+          handleChangeErrorText={setErrorText}
+        />
       ) : (
-        <Modal mode="login-success" errors={errors} history={history} />
+        <Modal
+          mode="login-success"
+          errors={errors}
+          history={history}
+          handleChangeErrorText={setErrorText}
+        />
       )}
       <LoginWrapper>
         <h1>로그인</h1>
@@ -126,6 +146,8 @@ const Login = ({ history }) => {
               values={values}
               errors={errors}
               handleChange={handleChange}
+              inputRef={inputRef}
+              errorText={errorText}
             />
           ))}
           <LoginBtn>

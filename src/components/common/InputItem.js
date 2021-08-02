@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mapErrorText } from '../../pages/SignUp';
 
 const InputWrapper = styled.div`
   display: flex;
@@ -53,7 +54,14 @@ const Input = styled.input`
   }
 `;
 
-const InputItem = ({ input, values, errors, handleChange }) => {
+const InputItem = ({
+  input,
+  values,
+  errors,
+  handleChange,
+  inputRef,
+  errorText,
+}) => {
   return (
     <InputWrapper>
       <label htmlFor="name">{input.name}</label>
@@ -66,6 +74,7 @@ const InputItem = ({ input, values, errors, handleChange }) => {
           value={values[input.id] || ''}
           onChange={handleChange}
           error={errors[input.id]}
+          ref={mapErrorText[errorText] === input.id ? inputRef : null}
         />
 
         {errors[input.id] ? (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Button } from '../components/common/GlobalStyles';
 import useForm from '../modules/hooks/useForm';
@@ -75,6 +75,13 @@ const inputList = [
   },
 ];
 
+export const mapErrorText = {
+  이메일: 'email',
+  비밀번호: 'password',
+  '비밀번호 확인': 'confirm-password',
+  연락처: 'mobile',
+};
+
 const SignUp = ({ history }) => {
   const { values, errors, handleChange, handleSubmit } = useForm(
     validate,
@@ -84,12 +91,31 @@ const SignUp = ({ history }) => {
   const signUpResponse = useSelector((state) => state.user.signUpResponse);
   const showModal = useSelector((state) => state.user.showModal);
 
+  const [errorText, setErrorText] = useState();
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [errorText]);
+
   return (
     <Background>
       {signUpResponse && showModal ? (
-        <Modal mode="sign-up-success" errors={errors} history={history} />
+        <Modal
+          mode="sign-up-success"
+          errors={errors}
+          history={history}
+          handleChangeErrorText={setErrorText}
+        />
       ) : (
-        <Modal mode="sign-up-validate" errors={errors} history={history} />
+        <Modal
+          mode="sign-up-validate"
+          errors={errors}
+          history={history}
+          handleChangeErrorText={setErrorText}
+        />
       )}
       <SignUpWrapper>
         <h1>회원가입</h1>
@@ -101,6 +127,8 @@ const SignUp = ({ history }) => {
               values={values}
               errors={errors}
               handleChange={handleChange}
+              inputRef={inputRef}
+              errorText={errorText}
             />
           ))}
           <SignUpBtn>

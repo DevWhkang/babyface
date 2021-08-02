@@ -84,7 +84,7 @@ const modalMode = {
   // other mode
 };
 
-const Modal = ({ mode, errors, history }) => {
+const Modal = ({ mode, errors, history, handleChangeErrorText }) => {
   const dispatch = useDispatch();
   const showModal = useSelector((state) => state.user.showModal);
 
@@ -101,15 +101,14 @@ const Modal = ({ mode, errors, history }) => {
       .slice(0, 1);
     return sortedError.length ? sortedError[0][1] : 0;
   }, [errors]);
-
   const handleClickModalClose = useCallback(() => {
     dispatch(changeModalState(false));
-
+    handleChangeErrorText(errorText);
     if (mode === modalMode.NOT_LOGIN_ALERT) history.push('/login');
     if (mode === modalMode.LOGIN_VALIDATE) dispatch(loginFailure(null));
     if (mode === modalMode.LOGOUT) history.goBack();
     if (mode.includes('success')) history.push('/');
-  }, [dispatch, mode, history]);
+  }, [dispatch, mode, history, errorText, handleChangeErrorText]);
 
   const handleClickLogout = useCallback(() => {
     dispatch(logoutAction());
