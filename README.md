@@ -4,5 +4,5 @@
 ## git flow
 ### master -> dev -> features -> merge to dev(default branch: dev)
 
-## 과제 진행 플로우
+## project work flow
 ### Separate issue tasks -> Scheduling with Project Kanban Board
